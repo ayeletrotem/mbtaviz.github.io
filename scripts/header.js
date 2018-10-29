@@ -8,7 +8,7 @@
 
 (function () {
   "use strict";
-  var svg = d3.select('.header .graphic').append("svg").attr('width', 283).attr('height', 283);
+  var svg = d3.select('.header .graphic').append("svg").attr('width', 800).attr('height', 600);
 
   // Render the station map first, then load the train data and start animating trains
   VIZ.requiresData([
@@ -204,4 +204,3 @@
     }
   });
 }());
-
