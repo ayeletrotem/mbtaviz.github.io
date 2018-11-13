@@ -216,7 +216,7 @@
     return horizon;
   };
 
-  var d3_horizonArea = d3.svg.area(),
+  var d3_horizonArea = d3.area(),
       d3_horizonId = 0;
 
   function d3_horizonX(d) {

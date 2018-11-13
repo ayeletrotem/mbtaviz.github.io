@@ -56,7 +56,7 @@
     var maxUnixSeconds = moment('2014/02/04 02:00 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
 
     // number of times per second to recalculate trajectories of trains
-    var PER_SECOND = 10;
+    var PER_SECOND = 50;
 
     // Now load the marey data and start the animation
     VIZ.requiresData([
@@ -65,10 +65,9 @@
       trips = data;
       // and start rendering it - 1 minute = 1 second
       renderTrainsAtTime(lastTime, true);
-      (function animate() {
+      d3.timer(function() {
         renderTrainsAtTime(lastTime > maxUnixSeconds ? minUnixSeconds : (lastTime + 60 / PER_SECOND));
-        setTimeout(animate, 1000 / PER_SECOND);
-      }());
+      }, 1000 / PER_SECOND);
     });
 
     // Render the dots for each train at a particular point in time
@@ -99,7 +98,7 @@
             .attr('cx', function (d) { return d.pos[0]; })
             .attr('cy', function (d) { return d.pos[1]; });
       } else {
-        trains.transition().duration(duration).ease('linear')
+        trains.transition().duration(duration).ease(d3.easeLinear)
             .attr('cx', function (d) { return d.pos[0]; })
             .attr('cy', function (d) { return d.pos[1]; });
       }
@@ -110,7 +109,7 @@
           .attr('cy', function (d) { return d.pos[1]; });
       trains.exit().remove();
       if (unixSeconds) { svg.select('.time-display').text(function () {
-        var t = moment(unixSeconds * 1000).zone(5);
+        var t = moment(unixSeconds * 1000).utcOffset(-5);
         return t.format('dddd M/D h:mm a');
       }); }
     }
@@ -133,18 +132,18 @@
       var svg = svgContainer
           .attr('width', Math.max(250, scale * (xRange[1] - xRange[0]) + margin.left + margin.right))
           .attr('height', scale * (yRange[1] - yRange[0]) + margin.top + margin.bottom)
-        .appendOnce('g', 'map-container')
+          .appendOnce('g', 'map-container')
           .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-      svg.appendOnce('text', 'time-display')
+      svg.appendOnce('text', 'time-display').firstTime
         .attr('x', svgContainer.attr('width') * 0.55 - 10)
         .attr('y', svgContainer.attr('height') * 0.55);
 
-      var tip = d3.tip()
-          .attr('class', 'd3-tip')
-          .offset([-10, 0])
-          .html(function(d) { return d.name; });
-      svg.call(tip);
+     var tip = d3.tip()
+         .attr('class', 'd3-tip')
+         .offset([-10, 0])
+         .html(function(d) { return d.name; });
+     svg.call(tip);
 
       var stations = svg.selectAll('.station')
           .data(network.nodes, function (d) { return d.name; });
@@ -154,10 +153,8 @@
 
       connections
           .enter()
-        .append('line')
-          .attr('class', function (d) { return 'connect ' + d.line; });
-
-      connections
+          .append('line')
+          .attr('class', function (d) { return 'connect ' + d.line; })
           .attr('x1', function (d) { return d.source.pos[0]; })
           .attr('y1', function (d) { return d.source.pos[1]; })
           .attr('x2', function (d) { return d.target.pos[0]; })
@@ -165,8 +162,11 @@
 
       stations
           .enter()
-        .append('circle')
+          .append('circle')
           .attr('class', function (d) { return 'station middle station-label ' + d.id; })
+          .attr('cx', function (d) { return d.pos[0]; })
+          .attr('cy', function (d) { return d.pos[1]; })
+          .attr('r', 2)
           .on('mouseover', function (d) {
             if (d.pos[1] < 30) {
               tip.direction('e')
@@ -178,10 +178,6 @@
             tip.show(d);
           })
           .on('mouseout', tip.hide);
-
-      stations.attr('cx', function (d) { return d.pos[0]; })
-          .attr('cy', function (d) { return d.pos[1]; })
-          .attr('r', 2);
 
       // line color circles at the end of each line
       function dot(id, clazz) {
