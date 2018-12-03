@@ -37,7 +37,7 @@
 
     // watch height to adjust visualization after loading data
     VIZ.watchSize(function () {
-      drawMap(svg, $('.container').width() / 4, $('.container').width() / 4);
+      drawMap(svg, $('.container').width(), $('.container').width());
     });
 
 
@@ -52,7 +52,7 @@
     }
 
     var radius = 2;
-    var minUnixSeconds = moment('2014/02/03 07:00 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
+    var minUnixSeconds = moment('2014/02/03 07:03 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
     var maxUnixSeconds = moment('2014/02/04 02:00 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
 
     // number of times per second to recalculate trajectories of trains

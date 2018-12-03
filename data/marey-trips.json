@@ -2,12 +2,18 @@
     "trip": "B98A375E5",
     "line": "blue",
     "begin": 1391429000,
-    "end": 1391429200,
+    "end": 1391429900,
     "stops": [{
         "stop": "place-rbmnl",
         "time": 1391429000
     }, {
-        "stop": "place-sdmnl",
+        "stop": "place-mvbcl",
         "time": 1391429200
+    }, {
+        "stop": "place-ayelet",
+        "time": 1391429300
+    }, {
+        "stop": "place-bomnl",
+        "time": 1391429900
     }]
 }]

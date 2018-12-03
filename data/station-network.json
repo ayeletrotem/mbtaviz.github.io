@@ -152,6 +152,9 @@
     }, {
         "id": "place-bomnl",
         "name": "Bowdoin Station"
+    }, {
+        "id": "place-ayelet",
+        "name": "Ayelet Station"
     }],
     "links": [{
         "source": 5,
@@ -365,10 +368,15 @@
         "color": "2F5DA6"
     }, {
         "source": 50,
+        "target": 51,
+        "line": "blue",
+        "color": "2F5DA6"
+    },{
+        "source": 51,
         "target": 49,
         "line": "blue",
         "color": "2F5DA6"
-    }, {
+    },{
         "source": 49,
         "target": 32,
         "line": "blue",
