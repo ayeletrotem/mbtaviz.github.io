@@ -8,7 +8,27 @@
 
 (function () {
   "use strict";
-  var svg = d3.select('.header .graphic').append("svg").attr('width', 800).attr('height', 600);
+  var svg = d3.select('.header .graphic').append("svg").attr('width', 800).attr('height', 1000);
+
+  function inflateTrips(trips) {
+    var factor = 10;
+    return _.reduce(trips, function(acc, trip, index) {
+        for (var i = 0; i < trip.capacity; i++) {
+          var addition = i * factor;
+          var newTrip = {
+            trip: trip.trip + "_" + i,
+            line: trip.line,
+            begin: trip.begin + addition,
+            end: trip.end + addition,
+            stops: _.map(trip.stops, function (s, index) {
+              return { stop: s.stop, time: s.time + addition };
+            })
+          }
+          acc.push(newTrip);
+        }
+        return acc;
+    }, []);
+  }
 
   // Render the station map first, then load the train data and start animating trains
   VIZ.requiresData([
@@ -37,7 +57,7 @@
 
     // watch height to adjust visualization after loading data
     VIZ.watchSize(function () {
-      drawMap(svg, $('.container').width(), $('.container').width());
+      drawMap(svg, $('.container').width() / 1.5, $('.container').width() / 1.5);
     });
 
 
@@ -52,8 +72,8 @@
     }
 
     var radius = 2;
-    var minUnixSeconds = moment('2014/02/03 07:03 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
-    var maxUnixSeconds = moment('2014/02/04 02:00 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
+    var minUnixSeconds = moment('2014/02/03 07:00 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
+    var maxUnixSeconds = moment('2014/02/03 07:20 -0500', 'YYYY/MM/DD HH:m ZZ').valueOf() / 1000;
 
     // number of times per second to recalculate trajectories of trains
     var PER_SECOND = 50;
@@ -62,7 +82,10 @@
     VIZ.requiresData([
       'json!data/marey-trips.json'
     ]).done(function (data) {
-      trips = data;
+      trips = inflateTrips(data);
+
+      // start manipulating the trips to make them bigger
+
       // and start rendering it - 1 minute = 1 second
       renderTrainsAtTime(lastTime, true);
       d3.timer(function() {
@@ -185,14 +208,14 @@
           .classed(clazz, true)
           .classed('end', true)
           .classed('middle', false)
-          .attr('r', Math.max(endDotRadius, 3));
+          .attr('r', Math.max(endDotRadius, 1));
       }
-      dot('place-asmnl', "red");
-      dot('place-alfcl', "red");
-      dot('place-brntn', "red");
-      dot('place-wondl', "blue");
+      dot('place-asmnl', "black");
+      dot('place-alfcl', "black");
+      dot('place-brntn', "black");
+      dot('place-Netanya-Sapir', "blue");
       dot('place-bomnl', "blue");
-      dot('place-forhl', "orange");
+      dot('place-forhl', "green");
       dot('place-ogmnl', "orange");
       if (trips) {
         renderTrainsAtTime(lastTime, true);

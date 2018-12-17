@@ -24,8 +24,8 @@
         "id": "place-sstat",
         "name": "South Station"
     }, {
-        "id": "place-dwnxg",
-        "name": "Downtown Crossing Station"
+        "id": "place-Hutsot",
+        "name": "Hutsot HaMifrats"
     }, {
         "id": "place-pktrm",
         "name": "Park St. Station"
@@ -96,8 +96,8 @@
         "id": "place-grnst",
         "name": "Green St. Station"
     }, {
-        "id": "place-state",
-        "name": "State St. Station"
+        "id": "Kiryat Hayim",
+        "name": "Kiryat Hayim Station"
     }, {
         "id": "place-haecl",
         "name": "Haymarket Station"
@@ -120,41 +120,56 @@
         "id": "place-ogmnl",
         "name": "Oak Grove Station"
     }, {
-        "id": "place-aport",
-        "name": "Airport Station"
+        "id": "place-BatGalim",
+        "name": "Haifa-Bat Galim"
     }, {
-        "id": "place-wondl",
-        "name": "Wonderland Station"
+        "id": "place-Netanya-Sapir",
+        "name": "Netanya-Sapir"
     }, {
-        "id": "place-bmmnl",
-        "name": "Beachmont Station"
+        "id": "place-Hadera",
+        "name": "Hadera-West"
     }, {
-        "id": "place-sdmnl",
-        "name": "Suffolk Downs Station"
+        "id": "place-Caesarea",
+        "name": "Caesarea-Pardes Hana"
     }, {
-        "id": "place-orhte",
-        "name": "Orient Heights Station"
+        "id": "place-Binyamina",
+        "name": "Binyamina"
     }, {
-        "id": "place-wimnl",
-        "name": "Wood Island Station"
+        "id": "place-HofHaKarmel",
+        "name": "Haifa-Hof HaKarmel"
     }, {
-        "id": "place-rbmnl",
-        "name": "Revere Beach Station"
+        "id": "place-Netanya",
+        "name": "Netanya"
     }, {
-        "id": "place-mvbcl",
-        "name": "Maverick Station"
+        "id": "place-HaShmona",
+        "name": "Haifa Center-HaShmona"
     }, {
-        "id": "place-aqucl",
-        "name": "Aquarium Station"
+        "id": "place-HaMifrats",
+        "name": "HaMifrats Central Station"
     }, {
-        "id": "place-gover",
-        "name": "Government Center Station"
+        "id": "place-Kiryat Motzkin",
+        "name": "Kiryat Motzkin"
     }, {
-        "id": "place-bomnl",
-        "name": "Bowdoin Station"
+        "id": "place-Akko",
+        "name": "Akko Station"
     }, {
-        "id": "place-ayelet",
-        "name": "Ayelet Station"
+        "id": "place-Naharia",
+        "name": "Naharia Station"
+    }, {
+        "id": "place-BetYehoshua",
+        "name": "Bet Yehoshu'a Station"
+    }, {
+        "id": "place-Hertsliya",
+        "name": "Hertsliya Station"
+    }, {
+        "id": "place-TlvUniversity",
+        "name": "Tel Aviv University Station"
+    }, {
+        "id": "place-TlvSavidorCenter",
+        "name": "Tel Aviv Savidor Center Station"
+    }, {
+        "id": "place-TlvHaShalom",
+        "name": "Tel Aviv HaShalom Station"
     }],
     "links": [{
         "source": 5,
@@ -411,5 +426,6 @@
         "target": 44,
         "line": "blue",
         "color": "2F5DA6"
+
     }]
 }

@@ -3,17 +3,21 @@
     "line": "blue",
     "begin": 1391429000,
     "end": 1391429900,
+    "capacity": 5,
     "stops": [{
-        "stop": "place-rbmnl",
+        "stop": "place-Naharia",
         "time": 1391429000
     }, {
-        "stop": "place-mvbcl",
+        "stop": "place-Kiryat Motzkin",
         "time": 1391429200
     }, {
-        "stop": "place-ayelet",
+        "stop": "place-HaMifrats",
         "time": 1391429300
     }, {
-        "stop": "place-bomnl",
+        "stop": "place-HaShmona",
+        "time": 1391429600
+    }, {
+        "stop": "place-BatGalim",
         "time": 1391429900
     }]
 }]
